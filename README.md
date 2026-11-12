@@ -1,4 +1,6 @@
-# AI-Driven Business Ops
+# Driven-Business
+
+## AI-Driven Business Ops
 
 Arquitetura unificada de inteligência operacional e automação:
 simulador de margem, triagem automática com LLM e agentes autônomos com guardrails.
