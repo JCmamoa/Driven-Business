@@ -34,8 +34,8 @@
   <rect width="1600" height="1100" fill="url(#bg)"/>
 
   <!-- Title -->
-  <text x="800" y="60" fill="#FAFAFA" font-size="30" font-weight="700" text-anchor="middle">AI-Driven Business Ops — Arquitetura Unificada</text>
-  <text x="800" y="90" fill="#9BA0AB" font-size="14" text-anchor="middle">Ingestão resiliente · Triagem cognitiva · Agentes autônomos com guardrails</text>
+  <text x="800" y="60" fill="#FAFAFA" font-size="30" font-weight="700" text-anchor="middle">AI-Driven Business Ops — Unified Architecture</text>
+  <text x="800" y="90" fill="#9BA0AB" font-size="14" text-anchor="middle">Resilient ingestion · Intelligent triage · Autonomous agents with guardrails</text>
 
   <!-- ============ LAYER 1: SOURCES ============ -->
   <rect x="60" y="140" width="1480" height="140" rx="14" fill="url(#layerA)" stroke="#2F323A"/>
@@ -58,7 +58,7 @@
     <text x="1040" y="230" fill="#FAFAFA">Intercom</text>
 
     <rect x="1160" y="195" width="180" height="60" rx="10" fill="#262730" stroke="#3D4048"/>
-    <text x="1250" y="230" fill="#FAFAFA">Transportadoras</text>
+    <text x="1250" y="230" fill="#FAFAFA">Carriers</text>
   </g>
 
   <!-- Arrow layer1 -> layer2 -->
@@ -75,7 +75,7 @@
 
     <rect x="410" y="400" width="260" height="70" rx="10" fill="#262730" stroke="#21C55D"/>
     <text x="540" y="432" fill="#FAFAFA">Transactional Outbox</text>
-    <text x="540" y="452" fill="#21C55D" font-size="11" font-weight="400">consistência + idempotência</text>
+    <text x="540" y="452" fill="#21C55D" font-size="11" font-weight="400">consistency + idempotency</text>
 
     <rect x="710" y="400" width="260" height="70" rx="10" fill="#262730" stroke="#FF4B4B"/>
     <text x="840" y="432" fill="#FAFAFA">RabbitMQ</text>
@@ -107,12 +107,12 @@
   <g>
     <rect x="100" y="630" width="440" height="180" rx="12" fill="#262730" stroke="#3D4048"/>
     <rect x="100" y="630" width="440" height="36" rx="12" fill="#312E81"/>
-    <text x="120" y="654" fill="#FAFAFA" font-size="14" font-weight="700">Módulo A — Margin Simulator</text>
+    <text x="120" y="654" fill="#FAFAFA" font-size="14" font-weight="700">Module A — Margin Simulator</text>
 
     <text x="120" y="690" fill="#9BA0AB" font-size="12">ETL: pandas / Polars</text>
-    <text x="120" y="710" fill="#9BA0AB" font-size="12">ML: Scikit-learn · elasticidade</text>
-    <text x="120" y="730" fill="#9BA0AB" font-size="12">Monte Carlo: 5.000 simulações</text>
-    <text x="120" y="750" fill="#9BA0AB" font-size="12">Output: P10 / P50 / P90 de lucro</text>
+    <text x="120" y="710" fill="#9BA0AB" font-size="12">ML: Scikit-learn · elasticity</text>
+    <text x="120" y="730" fill="#9BA0AB" font-size="12">Monte Carlo: 5,000 simulations</text>
+    <text x="120" y="750" fill="#9BA0AB" font-size="12">Output: P10 / P50 / P90 profit</text>
     <rect x="120" y="765" width="140" height="26" rx="6" fill="#1F2937" stroke="#4B5563"/>
     <text x="190" y="783" fill="#D1D5DB" font-size="11" text-anchor="middle">Streamlit</text>
     <rect x="270" y="765" width="140" height="26" rx="6" fill="#1F2937" stroke="#4B5563"/>
@@ -123,26 +123,26 @@
   <g>
     <rect x="580" y="630" width="440" height="180" rx="12" fill="#262730" stroke="#3D4048"/>
     <rect x="580" y="630" width="440" height="36" rx="12" fill="#166534"/>
-    <text x="600" y="654" fill="#FAFAFA" font-size="14" font-weight="700">Módulo B — Triage Pipeline</text>
+    <text x="600" y="654" fill="#FAFAFA" font-size="14" font-weight="700">Module B — Triage Pipeline</text>
 
     <text x="600" y="690" fill="#9BA0AB" font-size="12">Gemini 2.5 Flash via google-genai</text>
     <text x="600" y="710" fill="#9BA0AB" font-size="12">Structured Outputs (JSON Schema)</text>
     <text x="600" y="730" fill="#9BA0AB" font-size="12">Extraction: intent · urgency · sentiment</text>
-    <text x="600" y="750" fill="#9BA0AB" font-size="12">Roteamento inteligente por fila</text>
+    <text x="600" y="750" fill="#9BA0AB" font-size="12">Intelligent queue routing</text>
     <rect x="600" y="765" width="140" height="26" rx="6" fill="#1F2937" stroke="#4B5563"/>
     <text x="670" y="783" fill="#D1D5DB" font-size="11" text-anchor="middle">FRT ↓ ~85%</text>
     <rect x="750" y="765" width="140" height="26" rx="6" fill="#1F2937" stroke="#4B5563"/>
-    <text x="820" y="783" fill="#D1D5DB" font-size="11" text-anchor="middle">Determinístico</text>
+    <text x="820" y="783" fill="#D1D5DB" font-size="11" text-anchor="middle">Deterministic</text>
   </g>
 
   <!-- Module C -->
   <g>
     <rect x="1060" y="630" width="440" height="180" rx="12" fill="#262730" stroke="#3D4048"/>
     <rect x="1060" y="630" width="440" height="36" rx="12" fill="#7C2D12"/>
-    <text x="1080" y="654" fill="#FAFAFA" font-size="14" font-weight="700">Módulo C — Autonomous Agent</text>
+    <text x="1080" y="654" fill="#FAFAFA" font-size="14" font-weight="700">Module C — Autonomous Agent</text>
 
     <text x="1080" y="690" fill="#9BA0AB" font-size="12">ReAct · Function Calling</text>
-    <text x="1080" y="710" fill="#9BA0AB" font-size="12">RAG: pgvector (políticas + manuais)</text>
+    <text x="1080" y="710" fill="#9BA0AB" font-size="12">RAG: pgvector (policies + manuals)</text>
     <text x="1080" y="730" fill="#9BA0AB" font-size="12">Tools: lookup · label · refund · coupon</text>
     <text x="1080" y="750" fill="#9BA0AB" font-size="12">Guardrails + Human-in-the-Loop</text>
     <rect x="1080" y="765" width="140" height="26" rx="6" fill="#1F2937" stroke="#4B5563"/>

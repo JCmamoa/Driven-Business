@@ -1,7 +1,7 @@
 # AI-Driven Business Ops
 
-> Arquitetura unificada de inteligência operacional e automação para e-commerce:
-> otimização de margem, triagem automática com LLM e agentes autônomos com guardrails.
+> A unified architecture for e-commerce operations and automation:
+> margin optimization, LLM-powered ticket triage, and autonomous agents with guardrails.
 
 [![CI](https://github.com/JCmamoa/Driven-Business/actions/workflows/ci.yml/badge.svg)](https://github.com/JCmamoa/Driven-Business/actions/workflows/ci.yml)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
@@ -13,21 +13,21 @@
 
 ---
 
-## Visão Geral
+## Overview
 
-Este projeto implementa uma **arquitetura de referência** para operações de e-commerce orientadas por IA, cobrindo três frentes integradas:
+This project provides a **reference architecture** for AI-powered e-commerce operations across three integrated areas:
 
-| Módulo | Objetivo | Impacto de Negócio |
+| Module | Goal | Business Impact |
 |---|---|---|
-| **A — Margin Simulator** | Simulação Monte Carlo de margem líquida com redução de devoluções e escala de pedidos | Proteção de margem e decisões data-driven |
-| **B — Triage Pipeline** | Classificação automática de tickets via Gemini com Structured Outputs | Redução drástica do First Response Time (FRT) |
-| **C — Autonomous Agents** | Agentes ReAct com RAG e guardrails HITL para resolução ponta a ponta | Aumento do *Deflection Rate* com segurança |
+| **A — Margin Simulator** | Monte Carlo simulation of net margin under return-reduction and order-growth scenarios | Margin protection and data-driven decisions |
+| **B — Triage Pipeline** | Automatic ticket classification with Gemini Structured Outputs | Reduced First Response Time (FRT) |
+| **C — Autonomous Agents** | ReAct agents with RAG and human-in-the-loop (HITL) guardrails | Increased deflection with appropriate safeguards |
 
-A arquitetura prioriza **resiliência operacional**, **confiabilidade de execução** e **impacto direto em métricas** (EBITDA, FRT e taxa de resolução autônoma).
+The architecture prioritizes **operational resilience**, **execution reliability**, and **measurable business outcomes** (EBITDA, FRT, and autonomous resolution rate).
 
 ---
 
-## Arquitetura
+## Architecture
 
 ```text
 [Data Sources & Channels] ──► [Ingestion & Messaging] ──► [AI & Analytics Engines] ──► [Action & Observability]
@@ -35,55 +35,55 @@ A arquitetura prioriza **resiliência operacional**, **confiabilidade de execuç
 ```
 
 <p align="center">
-  <img src="docs/architecture.svg" alt="Arquitetura AI-Driven Business Ops" width="100%">
+  <img src="docs/architecture.svg" alt="AI-Driven Business Ops architecture" width="100%">
 </p>
 
-### Padrões distribuídos implementados
+### Distributed patterns
 
-- **Transactional Outbox** — consistência transacional entre DB e broker
-- **Idempotência** — chaves únicas em `processed_messages` evitam ações duplicadas
-- **Dead Letter Queue (DLQ)** — com *exponential backoff* para falhas transitórias
-- **Structured Outputs** — schema JSON determinístico via `response_schema`
-- **Guardrails + Human-in-the-Loop** — reembolsos acima do limite exigem aprovação
-- **Tracing completo de agentes** — cada passo do raciocínio persistido em `agent_traces`
+- **Transactional Outbox** — transactional consistency between the database and broker
+- **Idempotency** — unique keys in `processed_messages` prevent duplicate processing
+- **Dead Letter Queue (DLQ)** — exponential backoff for transient failures
+- **Structured Outputs** — deterministic JSON schema through `response_schema`
+- **Guardrails + Human-in-the-Loop** — refunds above the configured limit require approval
+- **Agent tracing** — each agent step is persisted in `agent_traces` for auditing
 
 ---
 
-## Stack Tecnológica
+## Technology Stack
 
-| Camada | Tecnologia |
+| Layer | Technology |
 |---|---|
 | **API** | FastAPI + Uvicorn |
-| **Banco** | PostgreSQL 16 + `pgvector` |
-| **Mensageria** | RabbitMQ 3.13 + `aio-pika` |
-| **IA / LLM** | Google Gemini 2.5 Flash (`google-genai`) |
-| **Dados / ML** | pandas, Polars, Scikit-learn, NumPy |
+| **Database** | PostgreSQL 16 + `pgvector` |
+| **Messaging** | RabbitMQ 3.13 + `aio-pika` |
+| **AI / LLM** | Google Gemini 2.5 Flash (`google-genai`) |
+| **Data / ML** | pandas, Polars, Scikit-learn, NumPy |
 | **Dashboard** | Streamlit |
-| **Observabilidade** | `structlog`, `prometheus-client` |
-| **Infra** | Docker + Docker Compose |
-| **Testes** | Pytest + pytest-asyncio |
+| **Observability** | `structlog`, `prometheus-client` |
+| **Infrastructure** | Docker + Docker Compose |
+| **Testing** | Pytest + pytest-asyncio |
 
 ---
 
-## Estrutura do Projeto
+## Project Structure
 
 ```text
 .
 ├── app/
-│   ├── main.py                    # FastAPI entrypoint
+│   ├── main.py                    # FastAPI entry point
 │   ├── config.py                  # Settings (pydantic-settings)
 │   ├── db.py                      # Engine + SessionLocal
 │   ├── models.py                  # SQLAlchemy models
 │   ├── schemas.py                 # Pydantic schemas
 │   ├── messaging/                 # Outbox + Broker + DLQ
-│   ├── module_a_margin/           # ETL + Simulador + Dashboard
+│   ├── module_a_margin/           # ETL + Simulator + Dashboard
 │   ├── module_b_triage/           # Pipeline + LLM client + Connectors
 │   ├── module_c_agents/           # ReAct agent + Tools + RAG + Guardrails
 │   └── observability/             # Logging + Metrics
-├── workers/                       # triage / agent / outbox_publisher
+├── workers/                       # Triage / agent / outbox publisher
 ├── migrations/                    # Alembic
-├── scripts/                       # seed_data + simulate_traffic
-│   └── capture_dashboard.py       # captura screenshot do dashboard
+├── scripts/                       # Seed data + traffic simulation
+│   └── capture_dashboard.py       # Capture a dashboard screenshot
 ├── docs/
 │   ├── architecture.svg
 │   └── screenshots/
@@ -99,41 +99,41 @@ A arquitetura prioriza **resiliência operacional**, **confiabilidade de execuç
 ## Quickstart (Windows 10 + VS Code)
 
 ```powershell
-# 1. Ambiente Python
+# 1. Create a Python environment
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-# 2. Variáveis
+# 2. Configure environment variables
 copy .env.example .env
-notepad .env    # preencha GEMINI_API_KEY
+notepad .env    # set GEMINI_API_KEY
 
-# 3. Infraestrutura (Docker Desktop aberto)
+# 3. Start infrastructure (Docker Desktop must be running)
 docker compose up -d postgres rabbitmq
 
-# 4. Schema + dados de exemplo
+# 4. Set up the schema and sample data
 alembic upgrade head
 python -m scripts.seed_data
 
-# 5. Testes
+# 5. Run tests
 pytest -v --asyncio-mode=auto
 
-# 6. Runtime — abra terminais separados no VS Code
+# 6. Start the services in separate VS Code terminals
 uvicorn app.main:app --reload                     # API
-python -m workers.triage_worker                   # Triage
-python -m workers.agent_worker                    # Agent
-python -m workers.outbox_publisher                # Outbox
+python -m workers.triage_worker                   # Triage worker
+python -m workers.agent_worker                    # Agent worker
+python -m workers.outbox_publisher                # Outbox publisher
 streamlit run app/module_a_margin/dashboard.py    # Dashboard
-python -m scripts.simulate_traffic                # Tráfego de teste
+python -m scripts.simulate_traffic                # Sample traffic
 ```
 
-### Preview
+### Dashboard preview
 
-![Dashboard de margem](docs/screenshots/dashboard.png)
+![Margin simulator dashboard](docs/screenshots/dashboard.png)
 
-*Simulador Monte Carlo de margem líquida com redução de devolução e escala de pedidos. Parâmetros ajustáveis em tempo real; saída em P10/P50/P90.*
+*Monte Carlo net-margin simulator with return-reduction and order-growth controls. The dashboard reports P10/P50/P90 estimates.*
 
-Para gerar novamente a captura, com o ambiente virtual ativo, o banco populado e o dashboard disponível:
+To recapture the dashboard, activate the virtual environment and make sure the database is running and populated:
 
 ```powershell
 pip install playwright
@@ -146,7 +146,7 @@ python -m scripts.capture_dashboard
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env  # editar GEMINI_API_KEY
+cp .env.example .env  # set GEMINI_API_KEY
 
 docker compose up -d postgres rabbitmq
 alembic upgrade head
@@ -156,28 +156,28 @@ pytest -v --asyncio-mode=auto
 uvicorn app.main:app --reload
 ```
 
-Para capturar o dashboard no macOS/Linux, instale o Playwright e o Chromium e execute `python -m scripts.capture_dashboard`.
+To capture the dashboard on macOS/Linux, install Playwright and Chromium, then run `python -m scripts.capture_dashboard`.
 
-### URLs padrão
+### Default URLs
 
-| Serviço | URL |
+| Service | URL |
 |---|---|
 | API / Swagger | http://localhost:8000/docs |
 | Health check | http://localhost:8000/health |
-| Dashboard de margem | http://localhost:8501 |
+| Margin dashboard | http://localhost:8501 |
 | RabbitMQ Management | http://localhost:15672 (`aiops` / `aiops`) |
 
 ---
 
-## Endpoints principais
+## Main Endpoints
 
-| Método | Rota | Descrição |
+| Method | Route | Description |
 |---|---|---|
 | `GET` | `/health` | Health check |
-| `POST` | `/webhooks/zendesk` | Ingestão de ticket via webhook |
-| `POST` | `/tickets/{id}/run-agent` | Dispara agente autônomo para um ticket |
+| `POST` | `/webhooks/zendesk` | Ingest a ticket through a webhook |
+| `POST` | `/tickets/{id}/run-agent` | Queue an autonomous agent run for a ticket |
 
-### Exemplo: webhook Zendesk
+### Example: Zendesk webhook
 
 ```bash
 curl -X POST http://localhost:8000/webhooks/zendesk \
@@ -185,105 +185,105 @@ curl -X POST http://localhost:8000/webhooks/zendesk \
   -d '{
     "ticket": {
       "id": 12345,
-      "requester": {"email": "cliente@example.com"},
-      "subject": "Troca de tamanho",
-      "description": "Comprei uma camiseta M mas ficou apertada."
+      "requester": {"email": "customer@example.com"},
+      "subject": "Size exchange",
+      "description": "I bought a size M shirt, but it is too tight."
     }
   }'
 ```
 
-### Exemplo: acionar agente
+### Example: run the agent
 
 ```bash
-curl -X POST "http://localhost:8000/tickets/<UUID>/run-agent?message=Quero+trocar+meu+pedido"
+curl -X POST "http://localhost:8000/tickets/<UUID>/run-agent?message=I+want+to+exchange+my+order"
 ```
 
 ---
 
-## Como os módulos funcionam
+## How the Modules Work
 
-### Módulo A — Margin Simulator
+### Module A — Margin Simulator
 
-- **ETL** lê histórico de SKUs (preço, custo, devolução, logística)
-- **Simulador** executa Monte Carlo sobre taxa de devolução e escala de pedidos
-- **Dashboard** permite ajustar parâmetros e ver P10/P50/P90 de lucro líquido em tempo real
+- **ETL** loads SKU history (price, cost, return rate, and logistics)
+- **Simulator** runs Monte Carlo scenarios for return-rate reduction and order growth
+- **Dashboard** lets users adjust parameters and view P10/P50/P90 net-profit estimates
 
 ```bash
 streamlit run app/module_a_margin/dashboard.py
 ```
 
-### Módulo B — Triage Pipeline
+### Module B — Triage Pipeline
 
-- Webhook → **Outbox** → RabbitMQ → Worker
-- Worker chama **Gemini** com `response_schema=TriageResult` (JSON determinístico)
-- Extrai `intent`, `urgency`, `sentiment`, `summary_points` e `suggested_queue`
-- Atualiza o ticket no banco de forma **idempotente**
+- Webhook → **Outbox** → RabbitMQ → worker
+- The worker calls **Gemini** with `response_schema=TriageResult` for structured output
+- Extracts `intent`, `urgency`, `sentiment`, `summary_points`, and `suggested_queue`
+- Updates the ticket idempotently
 
-### Módulo C — Autonomous Agent
+### Module C — Autonomous Agent
 
-- Arquitetura **ReAct / Tool-Use** com `function_calling` nativo
-- **RAG** com `pgvector` sobre políticas de troca, reembolso e manuais
-- **Guardrails**: reembolsos > `REFUND_HUMAN_APPROVAL_THRESHOLD` viram `pending_human_approval`
-- Cada passo registrado em `agent_traces` para auditoria
+- **ReAct / tool use** architecture with native function calling
+- **RAG** with `pgvector` for exchange policies, refunds, and manuals
+- **Guardrails**: refunds above `REFUND_HUMAN_APPROVAL_THRESHOLD` require human approval
+- Each step is recorded in `agent_traces` for auditing
 
 ---
 
-## Testes
+## Tests
 
 ```bash
 pytest -v --asyncio-mode=auto
 pytest --cov=app --cov-report=term-missing
 ```
 
-Suíte cobre: simulador, ETL, guardrails, outbox, pipeline de triagem e endpoints da API.
+The test suite covers the simulator, ETL, guardrails, outbox, triage pipeline, and API endpoints.
 
 ---
 
-## Configuração
+## Configuration
 
-Todas as variáveis estão em `.env` (veja `.env.example`):
+All environment variables are defined in `.env` (see `.env.example`):
 
-| Variável | Descrição | Padrão |
+| Variable | Description | Default |
 |---|---|---|
-| `DATABASE_URL` | Conexão PostgreSQL | `postgresql+psycopg://aiops:aiops@localhost:5432/aiops` |
-| `RABBITMQ_URL` | Conexão RabbitMQ | `amqp://aiops:aiops@localhost:5672/` |
-| `GEMINI_API_KEY` | Chave do Google AI Studio | — |
-| `GEMINI_MODEL` | Modelo Gemini | `gemini-2.5-flash` |
-| `REFUND_HUMAN_APPROVAL_THRESHOLD` | Limite para aprovação humana | `200.00` |
-| `LOG_LEVEL` | Nível de log | `INFO` |
+| `DATABASE_URL` | PostgreSQL connection string | `postgresql+psycopg://aiops:aiops@localhost:5432/aiops` |
+| `RABBITMQ_URL` | RabbitMQ connection string | `amqp://aiops:aiops@localhost:5672/` |
+| `GEMINI_API_KEY` | Google AI Studio API key | — |
+| `GEMINI_MODEL` | Gemini model | `gemini-2.5-flash` |
+| `REFUND_HUMAN_APPROVAL_THRESHOLD` | Threshold requiring human approval | `200.00` |
+| `LOG_LEVEL` | Logging level | `INFO` |
 
-Obtenha a `GEMINI_API_KEY` em https://aistudio.google.com/app/apikey.
+Get a `GEMINI_API_KEY` at https://aistudio.google.com/app/apikey.
 
 ---
 
 ## Troubleshooting
 
-| Sintoma | Solução |
+| Symptom | Solution |
 |---|---|
-| `ModuleNotFoundError: app` | Execute comandos na raiz do projeto |
-| `could not translate host name "postgres"` | `docker compose up -d postgres` |
-| `relation "vector" does not exist` | Confirme a imagem `pgvector/pgvector:pg16` |
-| Worker não consome | `docker compose logs -f rabbitmq` |
-| Erros 401 do Gemini | Verifique `GEMINI_API_KEY` |
+| `ModuleNotFoundError: app` | Run commands from the project root |
+| `could not translate host name "postgres"` | Run `docker compose up -d postgres` |
+| `relation "vector" does not exist` | Check that the `pgvector/pgvector:pg16` image is in use |
+| Worker does not consume messages | Check `docker compose logs -f rabbitmq` |
+| Gemini returns 401 errors | Check `GEMINI_API_KEY` |
 
 ---
 
 ## Roadmap
 
-- [ ] Fine-tuning de classificador próprio para reduzir dependência de LLM em alto volume
-- [ ] Painel de ROI consolidado (horas economizadas × custo por ticket)
-- [ ] Integração real com ERP/transportadoras (substituir mocks)
-- [ ] Deploy em Kubernetes com HPA baseado em profundidade de fila
-- [ ] Cache semântico de respostas do agente
+- [ ] Fine-tune an in-house classifier to reduce LLM dependency at high volume
+- [ ] Add a consolidated ROI dashboard (hours saved × cost per ticket)
+- [ ] Add real ERP/carrier integrations (replace mocks)
+- [ ] Deploy to Kubernetes with HPA based on queue depth
+- [ ] Add semantic response caching for the agent
 
 ---
 
-## Licença
+## License
 
-Distribuído sob licença **MIT**. Veja `LICENSE` para detalhes.
+Distributed under the **MIT** license. See [LICENSE](LICENSE) for details.
 
 ---
 
-## Autor
+## Author
 
 **JCmamoa** — [github.com/JCmamoa](https://github.com/JCmamoa)

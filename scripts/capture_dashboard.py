@@ -35,7 +35,7 @@ def _wait_streamlit_ready(
         if process.poll() is not None:
             log_file.seek(0)
             output = log_file.read().decode("utf-8", errors="replace")
-            raise RuntimeError(f"Streamlit encerrou antes de iniciar:\n{output}")
+            raise RuntimeError(f"Streamlit exited before becoming ready:\n{output}")
         try:
             response = httpx.get(URL, timeout=2)
             if response.status_code == 200:
@@ -43,7 +43,7 @@ def _wait_streamlit_ready(
         except httpx.RequestError:
             pass
         time.sleep(1)
-    raise TimeoutError(f"Streamlit não respondeu em {timeout_s}s ({URL})")
+    raise TimeoutError(f"Streamlit did not respond within {timeout_s}s ({URL})")
 
 
 async def _capture() -> None:
@@ -66,7 +66,7 @@ async def _capture() -> None:
 
 def main() -> None:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    print("Subindo Streamlit…")
+    print("Starting Streamlit...")
     with tempfile.TemporaryFile() as log_file:
         process = subprocess.Popen(
             [
@@ -86,9 +86,9 @@ def main() -> None:
         )
         try:
             _wait_streamlit_ready(process, log_file)
-            print("Aguardando renderização e capturando…")
+            print("Waiting for the dashboard to render and capturing screenshot...")
             asyncio.run(_capture())
-            print(f"Screenshot salvo em: {OUTPUT.relative_to(ROOT)}")
+            print(f"Screenshot saved to: {OUTPUT.relative_to(ROOT)}")
         finally:
             if process.poll() is None:
                 process.terminate()
